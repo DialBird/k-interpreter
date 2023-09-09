@@ -1,6 +1,10 @@
-import yfinance as yf
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
-meta_data = yf.download('META', period='1y')
+browser = webdriver.Chrome()
+browser.get("http://www.yahoo.com")
+input_field = browser.locator.css_selector('input[type="text"]')
+input_field.send_keys("今日のウマ娘のニュース")
 
-# Save the data to csv file
-meta_data.to_csv('meta_stock_data.csv')
+# Submit the search form
+input_field.send_keys(Keys.RETURN)
